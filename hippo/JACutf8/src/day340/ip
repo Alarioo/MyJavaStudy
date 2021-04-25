@@ -1,0 +1,7 @@
+ip 计算机
+端口 程序
+协议
+ipv4 （32bit）ipv6 （128bit)
+cmd窗口 ipconfig 显示ip地址
+       ping ip地址 查看是否联网
+       ping 127.0.0.1 回送地址 可以表示本机地址 测试用

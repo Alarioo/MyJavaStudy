@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JACgkb/JACgkb.iml" filepath="$PROJECT_DIR$/JACgkb/JACgkb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JACutf8/JACutf8.iml" filepath="$PROJECT_DIR$/JACutf8/JACutf8.iml" />
+    </modules>
+  </component>
+</project>

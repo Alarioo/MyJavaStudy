@@ -1,0 +1,82 @@
+最近遇到一个linux 平台上invisible character (0x1d)引起的数据装载失败问题，正好借此机会整理一下字符编码的相关知识。
+
+
+
+回车/换行：
+
+=================
+
+顾名思义，回车和换行是两个不同的控制字符:
+
+    -回车(Carriage Return)即\r，ascii码13(0x0d)，作用是将光标移到一行的开始位置
+
+    - 换行(LineFeed)即\n，ascii码10(0x0a)，作用是将光标移到下一行
+
+在不同的操作系统平台上，默认是用不同的控制符来标志一行的结束：
+
+    -Windows: \r\n
+
+    -Linux/Unix: \n
+
+    - Mac: \r（据说近来也改成了\n)
+
+这种不同实现导致的结果就是Winodws上的标准文本文件在其它平台上会多出一个^M控制符，而其它平台的文件在Windows上看会只有一行。Linux上有dos2unix/unix2dos命令来解决文本换行的问题。
+
+
+
+字符编码：
+
+=================
+
+文字是人类的语言，对于计算机来讲，语言就是0和1而已，因此将字符保存在计算机里就会涉及到字符编码的问题。网上有许多文章和博客介绍不同字符编码方式，这里就不引用了。列一些我自己理解的重点：
+
+ASCII:ANSI
+
+最初的计算机存储有限，字符的存储使用的是8位的ASCII码(最高位为0)，最多可以存储128个字符，加上扩展ASCII码(最高位为1)也只能存储256个字符。于是,各国都制定了自己的兼容ascii编码规范,就是各种ANSI码，来表示不同的语言中的不同文字。于是同样的ASCII码在不同的字符集(Collation/CharSet/CodePage)上就可以表示不同的字符，这就是为什么ANSI字符一定要与特定的Collation绑定才能表示唯一正确的字符，绑定错了就可能出现乱码(ascii码小于128的字符不会乱码)。
+
+
+
+Unicode
+
+又名万国码，所有语言的所有字符都可以用唯一的Unicode码来标识。Unicode有几种不同的实现方式：
+
+    - UTF-8:按照字节(8位)来存储编码，长度可变(1~6字节)。完全兼容ascii码，即标准ascii码中的字符在unicode中也是以相同的码来表示的。UTF-8使用第一个字节确定字节数：第一个字节首为0即一个字节,110即2字节,1110即3字节,字符后续字节都用10开始。
+
+   - UTF-16 (UCS2)：按照双字节存储字符，因此有字节序问题：即高位在前(Big Endian)还是低位在前(LittleEndian)。这个行为与CPU处理字节方式有关，一般LittleEndian用得比较多。比如“汉”字，Unicode码为0x6C49，按照Big Endian存储就是6C49，LittleEndian则为496C。
+
+
+
+如何区分不同编码的文件：
+
+用UltraEdit或者类似编辑器打开文本文件，切换到HexMode(ctrl + h)，看文件头：
+
+   - 没有任何特殊文件头的，直接第一个字符就是文本内容的，是ansi文件
+
+   - 以BOM (Byte Order Mark) 开头的是Unicode文件。BOM可以是0xFEFF(表示BigEndian)、0XFFFE(表示Little Endian)、或者0xEFBBBF (UTF-8)。
+
+
+
+注意，在Windows上用Notepad保存一个UTF-8的文件，用UltraEdit查看也可能以0xFFFE开头，这是因为UltraEdit可能自动将UTF-8的文件转换成UTF-16格式。如果通过UltraEdit打开文件查看BOM来确定文件格式，并不是安全的。UltraEdit下方状态栏则真实的显示了当前打开文件的实际编码格式，而不是当前编辑的编码格式。对于一个普通Ascii 格式的文件，它显示为DOS或者UNIX，对于一个包含有UTF-8编码字符的文件，它显示为U8-DOS或者U8-UNIX，对于UTF-16编码的文件，它显示为U-DOS 或者U-UNIX。
+
+
+
+我们知道，UTF-8 对于Ascii 字符的编码与原有的Ascii 编码一致，因此假如我们删除了一个UTF-8DOS文件中所有Ascii 以外的字符，保存后再打开，UltraEdit 将显示为DOS（Ascii）。
+
+如果我们不希望UltraEdit 在打开UTF-8 文件时自动转为UTF-16格式编辑，我们可以修改配置。如下图，确保“自动检测 UTF-8文件”不被选中。
+
+字符编码： <wbr>ANSI/UTF-8/UCS2(UTF-16)，以及回车换行
+
+需要注意的是，如果取消了这个选项，UltraEdit打开包含UTF-8编码的文件会产生乱码。
+
+UltraEdit 在File-Convertions菜单中提供了多种编码格式之间的转换，这将影响到保存的文件编码，转换后，在状态栏也能看到相应变化。在有些选项后标明有(UnicodeEditing) 或者(ASCII Editing)，这指定了编辑时显示用的编码，并不影响保存文件所用的编码，要区分开。
+
+工具WinHex 可以用来查看文件16进制内码。
+��为U-DOS 或者U-UNIX。
+
+
+
+我们知道，UTF-8 对于Ascii 字符的编码与原有的Ascii 编码一致，因此假如我们删除了一个UTF-8DOS文件中所有Ascii 以外的字符，保存后再打开，UltraEdit 将显示为DOS（Ascii）。
+
+如果我们不希望UltraEdit 在打开UTF-8 文件时自动转为UTF-16格式编辑，我们可以修改配置。如下图，确保“自动检测 UTF-8文件”不被选中。
+
+字符编码： <wbr>ANSI/UTF-8
