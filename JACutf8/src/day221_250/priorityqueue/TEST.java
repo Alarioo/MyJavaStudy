@@ -7,7 +7,7 @@ public class TEST {
     private PriorityQueue<Integer> left=new PriorityQueue<>();
     private PriorityQueue<Integer> right=new PriorityQueue<>((o1, o2) -> o2 - o1);
     private int N;
-    public MedianFinder() {
+    public void MedianFinder() {
 
     }
 
