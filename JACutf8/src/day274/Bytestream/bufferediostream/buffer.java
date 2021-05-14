@@ -6,7 +6,7 @@ import java.io.*;
 public class buffer {
     public static void main(String[] args) throws IOException {
         BufferedOutputStream bo=new BufferedOutputStream(new FileOutputStream("JACutf8\\src\\day274\\Bytestream\\bufferediostream\\bo.txt"));
-        bo.write("咕噜咕噜哦130+".getBytes());
+        bo.write("咕噜咕噜哦140+".getBytes());
         bo.flush();
         //缓存读取要刷新才写入
         BufferedInputStream bi=new BufferedInputStream(new FileInputStream("JACutf8\\src\\day274\\Bytestream\\bufferediostream\\bo.txt"));
