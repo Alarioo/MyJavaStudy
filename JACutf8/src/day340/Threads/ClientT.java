@@ -19,7 +19,8 @@ public class ClientT {
         while((line=br.readLine())!=null){
             bw.write(line);
             bw.newLine();
-            bw.flush();}
+            }
+        bw.flush(); //清空缓存区
         //结束传输标记
         s.shutdownOutput();
         //接收服务器反馈
