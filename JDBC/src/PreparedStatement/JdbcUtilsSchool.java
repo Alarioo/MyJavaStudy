@@ -1,10 +1,10 @@
-package JDBCUtils;
+package PreparedStatement;
 
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
 
-public class JdbcUtils {
+public class JdbcUtilsSchool {
     private static String driver = null;
     private static String url = null;
     private static String name = null;
@@ -12,7 +12,7 @@ public class JdbcUtils {
 
     static {
         try {
-            InputStream in = JdbcUtils.class.getClassLoader().getResourceAsStream("JDBCUtils/db.properties");
+            InputStream in = JdbcUtilsSchool.class.getClassLoader().getResourceAsStream("PreparedStatement/ps.properties");
             Properties p = new Properties();
             p.load(in);
             driver = p.getProperty("driver");
@@ -32,7 +32,7 @@ public class JdbcUtils {
     }
 
     //释放连接
-    public static void release(Connection con, Statement sta, ResultSet re) {
+    public static void release(Connection con, PreparedStatement sta, ResultSet re) {
         if (con != null) {
             try {
                 con.close();

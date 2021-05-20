@@ -1,4 +1,4 @@
-package MyFirstJDBC;
+package AMyFirstJDBC;
 
 import java.sql.*;
 

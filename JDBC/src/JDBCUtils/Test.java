@@ -16,8 +16,8 @@ public class Test {
             String sql="SELECT * FROM `users`";
             re = st.executeQuery(sql);
             while(re.next()){
-                System.out.print("name:"+re.getObject("name")+",");
-                System.out.print("birthday:"+re.getObject("birthday"));
+                System.out.print("name:"+re.getObject("name")+","
+                        +"birthday:"+re.getObject("birthday"));
             }
         }catch (SQLException e){
             e.printStackTrace();
