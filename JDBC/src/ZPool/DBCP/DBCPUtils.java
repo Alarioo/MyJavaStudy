@@ -1,4 +1,4 @@
-package ZPool;
+package ZPool.DBCP;
 
 
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
@@ -13,11 +13,15 @@ public class DBCPUtils {
     private static DataSource ds;
     static {
         try{
-            InputStream in=DBCPUtils.class.getClassLoader().getResourceAsStream("ZPool/dbcpconfig.properties");
+
+            InputStream in=DBCPUtils.class.getClassLoader().getResourceAsStream("ZPool/DBCP/dbcpconfig.properties");
+
             Properties p=new Properties();
             p.load(in);
+
             //创建数据源  池化技术 性能提高 详见INTRO
             ds =BasicDataSourceFactory.createDataSource(p);
+            System.out.println(1);
         }catch (Exception e){
             e.printStackTrace();
         }
