@@ -1,0 +1,15 @@
+接口的组成
+常量
+    public static final
+抽象方法
+    (public abstract)
+ 默认方法 Java8
+    接口中(public) default 可以有方法体
+    实施类可以选择不重写，重写不用带defalut
+ 静态方法 Java8
+    (public) static
+    只能由接口调用静态方法 应为不同接口允许存在同名方法，一个实现类实现两个存在同名方法的接口时，以实现类调用同名方法会引起混淆
+ 私有方法 Java9
+    private  只能被接口中默认方法调用
+    private static 同时能被接口中默认和静态方法调用方法调用
+    当接口中存在相同代码块，将该代码块抽取成共性私有代码
