@@ -1,10 +1,9 @@
 package day325.myproducerconsumer;
 
-public class Consumer  implements Runnable{
+public class MyConsumer  implements Runnable{
     Box box;
-
-    public  Consumer(){};
-    public Consumer(Box box) {
+    public  MyConsumer(){};
+    public MyConsumer(Box box) {
         this.box = box;
     }
     @Override

@@ -1,0 +1,3 @@
+函数式接口
+@FunctionalInterface
+只有一个抽象方法
