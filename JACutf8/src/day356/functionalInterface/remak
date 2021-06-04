@@ -1,3 +1,8 @@
 函数式接口
 @FunctionalInterface
 只有一个抽象方法
+supplier    get代表结果的供应商
+consumer    accept
+predicate   test逻辑运算
+function    apply
+    str.split(",")[1]

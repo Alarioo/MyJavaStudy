@@ -23,6 +23,6 @@ public class Demo {
                 return o1.length()-o2.length();
             }
         };*/
-        return (o1,o2)->o1.length()-o2.length();
+        return (o1,o2)->o1.length()-o2.length();    //返回函数式接口
     }
 }
