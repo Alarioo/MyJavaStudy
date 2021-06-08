@@ -1,0 +1,3 @@
+ClassPath=day386.ReflectDemo.student
+MethodName=method3
+MethodParameter=Source

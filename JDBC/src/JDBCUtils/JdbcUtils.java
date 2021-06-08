@@ -1,5 +1,6 @@
 package JDBCUtils;
 
+import java.io.FileReader;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.Properties;
@@ -12,9 +13,12 @@ public class JdbcUtils {
 
     static {
         try {
-            InputStream in = JdbcUtils.class.getClassLoader().getResourceAsStream("JDBCUtils/db.properties");
+            //InputStream in = JdbcUtils.class.getClassLoader().getResourceAsStream("JDBCUtils/db.properties");
             Properties p = new Properties();
-            p.load(in);
+            FileReader fr =new FileReader("JDBC\\src\\JDBCUtils\\db.properties");
+            p.load(fr);
+            fr.close();
+           //p.load(in);
             driver = p.getProperty("driver");
             url = p.getProperty("url");
             name = p.getProperty("name");

@@ -1,6 +1,5 @@
 package ZPool.DBCP;
 
-
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
 
 import javax.sql.DataSource;
@@ -15,7 +14,6 @@ public class DBCPUtils {
         try{
 
             InputStream in=DBCPUtils.class.getClassLoader().getResourceAsStream("ZPool/DBCP/dbcpconfig.properties");
-
             Properties p=new Properties();
             p.load(in);
 
