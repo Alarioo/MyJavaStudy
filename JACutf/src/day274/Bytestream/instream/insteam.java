@@ -1,4 +1,4 @@
-package day274.Bytestream.Byteinstream;
+package day274.Bytestream.instream;
 
 import java.io.File;
 import java.io.FileInputStream;

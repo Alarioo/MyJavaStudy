@@ -27,7 +27,7 @@ public class KeywordEnum {
         System.out.println(p3.getName()+","+p3.getOrder());
 
         //toString() 返回当前枚举类对象常量名称
-        System.out.println(s3.toString());
+        System.out.println(s3);
         p3.show();
     }
 }
@@ -42,26 +42,25 @@ enum Status1 implements Intef{
     Receive("receive",1){
         @Override
         public void show() {
-            System.out.println("阶段一");;
+            System.out.println("阶段一");
         }
     },   //这段代码放最前面 出最后一行用“;”,前面用“,”隔开
     Revise("revise",2){
         @Override
         public void show() {
-            System.out.println("阶段二");;
+            System.out.println("阶段二");
         }
     },
     Accept("accept",3){
         @Override
         public void show() {
-            System.out.println("阶段三");;
+            System.out.println("阶段三");
         }
     };
     /*
     public static Status receive = new Status("receive",1);
     public static Status revise = new Status("revise",2);
     public static Status accept = new Status("accept",3);
-
      */
     private final String name;
     private final int  order;
@@ -77,9 +76,11 @@ enum Status1 implements Intef{
         return this.order;
     }
 
-/*    @Override
+/*
+ @Override
     public void show() {
         System.out.println("普通接口继承");
-    }*/
+    }
+ */
 }
 
