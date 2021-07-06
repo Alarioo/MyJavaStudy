@@ -6,6 +6,10 @@ import java.util.Date;
 
 public class simpledateformat {
     public static void main(String[] args) throws ParseException {
+        /*
+        SimpleDateFormat
+        Date --format(格式)->  String           String --parse-> Date -- getTime()-> long
+         */
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         Date d=new Date();
         String s=sdf.format(d.getTime());       //格式化   Date String
