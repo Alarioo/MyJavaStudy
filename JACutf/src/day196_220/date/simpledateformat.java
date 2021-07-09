@@ -8,6 +8,7 @@ public class simpledateformat {
     public static void main(String[] args) throws ParseException {
         /*
         SimpleDateFormat(String format)
+        Date(long date)
         Date --format(格式)->  String           String --parse-> Date -- getTime()-> long
          */
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
